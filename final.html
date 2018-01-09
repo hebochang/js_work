@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css">
+    <title>js期末作业</title>
+    <script>
+        
+        function Book(id, name, num, author, price, words){
+            this.id = id ? id : 0;
+            this.name = name ? name :null;
+        }
+        
+        function addHandler(){
+            var book = new 
+        }
+    </script>
+</head>
+<body>
+  
+  <div class="container">
+  <row>
+  <div class="col-xs-6">
+    <div class="form-inline">
+    
+        <label>ID：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+         <input type="email" class="form-control" id="Inputsubmit" placeholder="ID">
+         
+        <br>
+        <br>
+        
+        <label>书名：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="书名">
+        
+        <br>
+        <br>
+        
+        <label>数量：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="数量">
+        
+        <br>
+        <br>
+        
+        <label>作者：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="作者">
+        
+        <br>
+        <br>
+        
+        <label>价格：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="价格">
+        
+        <br>
+        <br>
+        
+        <label>字数：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="ID">
+        
+        <br>
+        <br>
+        
+        <button class="btn btn-primary" onclick="addHandler">添加</button>
+    </div>
+  </div>
+  
+  <div class="col-xs-6">
+    <div class="form-inline">
+         <label>ID：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+         <input type="email" class="form-control" id="Inputsubmit" placeholder="ID">
+         
+        <br>
+        <br>
+        
+        <label>书名：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="书名">
+        
+        <br>
+        <br>
+        
+        <label>作者：</label>
+        <input type="email" class="form-control" id="Inputsubmit" placeholder="作者">
+        
+        <br>
+        <br>
+        
+        <button class="btn btn-primary" onclick="">查询</button>
+    </div>
+  
+  </div>
+  </row>
+  </div>
+  <br>
+  <br>
+  <div class="container"> 
+  
+		<table class="table table-bordered  table-hover" style="top:0px;z-index:2;" id="info-list">
+			<thead>
+				<tr>
+					<td width="100">ID</td>
+					<td width="80">书名</td>
+					<td width="80">数量</td>
+					<td width="80">作者</td>
+					<td width="80">价格</td>
+                    <td width="80">字数</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody id="info-body">
+
+			</tbody>
+		</table>
+	</div>
+      
+   <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
