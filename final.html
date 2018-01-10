@@ -3,88 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="main.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="main.css">
     <title>js期末作业</title>
     <script>
         
-        function Book(id, name, num, author, price, words){
-            this.id = id ? id : 0;
-            this.name = name ? name :null;
+        var _data = [], info_body;
+        function show(){
+            showData(_data);
+        }
+        function showData(data){
+            info_body = info_body || $('info-body');
+            var html = [];
+            for(var i=0; i<data.length; i++){
+                html.push('<tr>');
+                html.push('<td>'+data[i].id+'</td>');
+                html.push('<td>'+data[i].name+'</td>');
+                html.push('<td>'+data[i].sum+'</td>');
+                html.push('<td>'+data[i].author+'</td>');
+                html.push('<td>'+data[i].price+'</td>');
+                html.push('<td>'+data[i].words+'</td>');
+                html.push('<td><button class="btn btn-danger" style="margin-right:10px;" onclick="delHandler(\''+data[i].id+'\')">删除</button></td>');
+                html.push('\<tr>');
+            }
+            info_body.innerHTML = html.join("");
         }
         
+        function Book(id, name, sum, author, price, words){
+            this.id = id ? id : 0;
+            this.name = name ? name :null;
+            this.sum = sum ? sum : 0;
+            this.author = author ? author : null;
+            this.price = price ? price : 0;
+            this.words = words ? words : 0;
+        } 
+        
         function addHandler(){
-            var book = new 
+            var book = new Book();
+            book.id = $('InputAddID').value.trim();
+            book.name = $('InputAddname').value.trim();
+            book.sum = $('InputAddsum').value.trim();
+            book.author = $('InputAddauthor').value.trim();
+            book.price = $('InputAddprice').value.trim();
+            book.words = $('InputAddwords').value.trim();
+            if(valid(book))
+                _data.push(book);
+            //console.log(_data);
+            showData(_data);
         }
+        
+        function delHandler(id){
+			if(confirm('真的要删除吗？')){
+				var temp = [];
+				for(var i=0;i<_data.length;i++){
+					if(_data[i].id != id){
+						temp.push(_data[i]);
+					}
+				}
+				_data = temp;
+				showData(_data);
+			}
+		}
+        
+        function search(id,name,author){
+			//console.log(arguments);
+			var temp = [];
+			if(id == '' || name == '' || author == '')
+                alert("请输入完整信息");
+            for(var i=0; i<_data.length; i++){
+                if(id == _data[i].id){
+                    temp.push(_data[i])
+                    continue;
+                }
+                if(name == _data[i].name){
+                    temp.push(_data[i])
+                    continue;
+                }
+                if(author == _data[i].author){
+                    temp.push(_data[i])
+                    continue;
+                }
+            }
+            
+			showData(temp);
+		}
+        
+        function valid(book){
+            if(book.id == ""){
+                alert("ID不能为空");
+                return false;
+            }
+            for(var i=0; i<_data.length; i++){
+                    if(parseInt(_data[i].id) == parseInt(book.id)){
+                        alert("id已存在");
+                        return false;
+                    }
+                }
+            if(book.name == ""){
+                alert("书名不能为空");
+                return false;
+            }
+            
+            if(parseInt(book.sum) < 1){
+                alert("数量必须大于1");
+                return false;
+            }
+            return true;
+        }
+        
+        String.prototype.trim = function() {   
+			return this.replace(/(^\s*)|(\s*$)/g, "");    
+		}
+        
+        function $(id){
+			return document.getElementById(id);
+		}
     </script>
 </head>
 <body>
-  
   <div class="container">
   <row>
+  
+    <h1>图书管理系统主程序</h1>
   <div class="col-xs-6">
     <div class="form-inline">
     
-        <label>ID：&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="email" class="form-control" id="Inputsubmit" placeholder="ID">
+        <label>ID：&nbsp;&nbsp;&nbsp;</label>
+         <input type="email" class="form-control" id="InputAddID" placeholder="ID">
          
         <br>
         <br>
         
         <label>书名：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="书名">
+        <input type="email" class="form-control" id="InputAddname" placeholder="书名">
         
         <br>
         <br>
         
         <label>数量：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="数量">
+        <input type="email" class="form-control" id="InputAddsum" placeholder="数量">
         
         <br>
         <br>
         
         <label>作者：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="作者">
+        <input type="email" class="form-control" id="InputAddauthor" placeholder="作者">
         
         <br>
         <br>
         
         <label>价格：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="价格">
+        <input type="email" class="form-control" id="InputAddprice" placeholder="价格">
         
         <br>
         <br>
         
         <label>字数：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="ID">
+        <input type="email" class="form-control" id="InputAddwords" placeholder="ID">
         
         <br>
         <br>
         
-        <button class="btn btn-primary" onclick="addHandler">添加</button>
+        <button class="btn btn-primary" id="addsubmit" onclick="addHandler()">添加</button>
     </div>
   </div>
   
   <div class="col-xs-6">
     <div class="form-inline">
          <label>ID：&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="email" class="form-control" id="Inputsubmit" placeholder="ID">
+         <input type="email" class="form-control" id="searchid" placeholder="ID">
          
         <br>
         <br>
         
         <label>书名：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="书名">
+        <input type="email" class="form-control" id="searchname" placeholder="书名">
         
         <br>
         <br>
         
         <label>作者：</label>
-        <input type="email" class="form-control" id="Inputsubmit" placeholder="作者">
+        <input type="email" class="form-control" id="searchauthor" placeholder="作者">
         
         <br>
         <br>
         
-        <button class="btn btn-primary" onclick="">查询</button>
+        <button class="btn btn-primary" onclick="search($('searchid').value.trim(), $('searchname').value.trim(), $('searchauthor').value.trim())">查询</button>
+        <button class="btn btn-primary" onclick="show()">显示书库中所有书籍</button>
     </div>
   
   </div>
@@ -107,12 +212,15 @@
 				</tr>
 			</thead>
 			<tbody id="info-body">
+			    
+			</tbody>
+			<tbody id="info-body">
 
 			</tbody>
 		</table>
 	</div>
       
-   <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        
+        var fso = new 
+        
+        String.prototype.trim = function() {   
+			return this.replace(/(^\s*)|(\s*$)/g, "");    
+		}
+        
+        function $(id){
+			return document.getElementById(id);
+		}
+    </script>
+</head>
+<body>
+  <div class="container">
+  <div class="row">
+  <div class="col-xs-3">
+  </div>
+  <div class="col-xs-6">
+  <h1>
+      图书管理系统
+  </h1> 
+  <div class="form-group">
+    <label for="exampleInputEmail1">邮箱</label>
+    <input type="email" class="form-control" id="Email" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密码</label>
+    <input type="password" class="form-control" id="Passwd" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">请再次输入密码</label>
+    <input type="password" class="form-control" id="tPasswd" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary" id="Login" onclick="funlogin()">登陆</button>
+   <button type="submit" class="btn btn-primary">注册</button>
+      </div>
+    <div class="col-xs-3">
+  </div>
+    </div>
+   </div>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,3 +1,19 @@
 #Inputsubmit{
     width: 50px;
 }
+
+body {
+    font-family: "Microsoft Yahei", 微软雅黑, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    color: rgb(187, 187, 187);
+    width: 100%;
+    text-align: left;
+    background-color: rgb(68, 68, 68);
+    background-image: url(./wangluo1.jpg);
+    background-attachment:fixed;
+    white-space: normal;
+    word-wrap: break-word;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0px auto !important;
+}

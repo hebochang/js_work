@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet" href="main.css">
+    <script>
+        
+        var passwd = $('Passwd');
+        var _data;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "login.json", true);
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            
+            if (xhr.readyState == 4) {
+                if (xhr.status >= 200 && xhr.status < 300)
+                    console.log(xhr.responseText);
+                _data = JSON.parse(xhr.responseText);
+                
+                //console.log(_data);
+                //fun(data);
+            }
+        }
+        
+        function fun(data) {
+            for(var i=0; i<data.name.length; i++){
+                if(data.name[i] == $('Email').value.trim()){
+                    if(data.passwd[i] == $('Passwd').value.trim()){
+                        alert("密码正确");
+                        window.location.href="./final.html"; 
+                    }
+                }
+            }
+        }
+        
+        function funlogin(){
+            fun(_data);
+        }
+        
+        String.prototype.trim = function() {   
+			return this.replace(/(^\s*)|(\s*$)/g, "");    
+		}
+        
+        function $(id){
+			return document.getElementById(id);
+		}
+    </script>
+</head>
+<body>
+  <div class="container">
+  <div class="row">
+  <div class="col-xs-3">
+  </div>
+  <div class="col-xs-6">
+  <h1>
+      图书管理系统
+  </h1> 
+  <p style="font-size: 10px;">
+      使用ajax请求json本机数据登陆，需要服务端支持
+  </p>
+  <div class="form-group">
+    <label for="exampleInputEmail1">邮箱 <span style="font-size: 5px;">默认邮箱763303986@qq.com</span></label>
+    <input type="email" class="form-control" id="Email" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密码 <span style="font-size: 5px;">默认密码666666</span></label>
+    <input type="password" class="form-control" id="Passwd" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary" id="Login" onclick="funlogin()">登陆</button>
+   <button type="submit" class="btn btn-primary">注册</button>
+      </div>
+    <div class="col-xs-3">
+  </div>
+    </div>
+   </div>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
